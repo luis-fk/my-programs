@@ -1,0 +1,68 @@
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1%;
+}
+
+.text {
+    color: white;
+    font-size: large;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.title{
+    color: #476fff;
+    display: flex;
+    justify-content: center;
+}
+
+.textbox {
+    width: 130px;
+    margin: 2px;
+    font-size: larger;
+}
+
+.next{
+    font-size: large;
+    margin: 2px;
+}
+
+.boxes {
+    color:#ffffff;
+    display: flex;
+    flex-direction: column;
+    font-size: 22px;
+    justify-content: center;
+}
+
+.all {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.inside{
+    padding: 10px;
+    border: 3px solid black;
+    margin: 2px;
+}
+
+.info {
+    color:#40d027;
+    display: flex;
+    justify-content: center;
+}
+
+.error {
+    color:#f93c3c;
+    display: flex;
+    justify-content: center;
+}
+
+.guess{
+    color: #c6c4ad;
+    display: flex;
+    justify-content: center;
+}

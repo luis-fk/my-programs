@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/blueprints/numlee/static/numlee.css" />
+    <title>Numlee</title>     
+{% endblock %}
+
+{% block main %}
+    <h2 class="title">Numlee:</h2>
+    <h3 class="guess">
+        This is your&nbsp<u style="color:antiquewhite">second</u>&nbspguess.
+    </h3>
+    <br/>
+
+    <form action="/numlee2" method="post">
+        <div class="buttons">
+            <input autocomplete="off" autofocus name="guess" placeholder="Guess" type="text" class="textbox">
+            <button type="submit" class="next">Check</button>
+        </div>
+
+        <!-- messaged displayed if the numbe inputed is out of range or if it is negative -->
+        {% set message = get_flashed_messages(with_categories = true) %}  
+            {% if message %}
+                {% for category, message in message %}  
+                    <h3 class="{{ category }}">{{ message }}</h3>
+                {% endfor %}
+            {% endif %}
+
+        <br/>
+        <div class="all">
+            <div class="boxes">
+                <!-- here, autoescape is being used because of replaces. Also, multiple
+                     replaces are being used in order for each attempt of the user to be
+                     displayed in a different div with their respective styles -->
+                {% autoescape false %}
+                    {{ text | replace("#", "<br/>") | 
+                    replace("x", "<div class=" + "inside>") | 
+                    replace("y", "</div>") | 
+                    replace("(correct)", "<b style=color:lime;>correct</b>") | 
+                    replace("incorrect", "<b style=color:red;>incorrect</b>") |
+                    replace("xy", "<b style=color:lime;>correct</b>") | 
+                    reject("in", ["[", "]", ",", "'"]) | join }}
+                {% endautoescape %}
+                
+            </div>
+        </div>
+    </form>
+{% endblock %}

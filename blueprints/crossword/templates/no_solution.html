@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/blueprints/crossword/static/crossword.css" />
+    <title>Crossword</title>     
+{% endblock %}
+
+{% block main %}
+    <h2 class="title">Crossword:</h2>
+    <br />
+
+    <!-- shows the message of no solution -->
+    {% set message = get_flashed_messages(with_categories = true) %}  
+            {% if message %}
+                {% for category, message in message %}  
+                    <h3 class="{{ category }}">{{ message }}</h3>
+               {% endfor %}
+            {% endif %}
+
+        <div class="buttons">
+            <a href="/board_size"><button type="submit" class="next">Try again</button></a>
+        </div>
+
+{% endblock %}

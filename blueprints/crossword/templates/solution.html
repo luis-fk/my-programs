@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/blueprints/crossword/static/crossword.css" />
+    <title>Crossword</title>     
+{% endblock %}
+
+{% block main %}
+    <h2 class="title">Crossword:</h2>
+    <p class="text">
+
+    </p>
+    <table>
+        <!-- prints the board with each character in a different cell of
+             a table in html. The variable "board" that is passed to this page
+             is a dictionary with indexes that correspond to a 2D table, following 
+             a pattern of 00, 01, 02, 03, 10, 11, 12... This was the only way
+             found to iterate over such a table using jinja, since we cannot set
+             counters, that is why, as seen below, we are concatenating "i" and "j"
+             within the board bracket, so we can acess the indexes of the dictionary
+             as it was created -->
+        {% for i in rows %}
+            <tr>
+                {% for j in columns %}
+                    <td>{{ board[i|string + j|string] }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table> 
+{% endblock %}

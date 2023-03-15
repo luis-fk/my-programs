@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/blueprints/numlee/static/numlee.css" />
+    <title>Numlee</title>     
+{% endblock %}
+
+{% block main %}
+    <h2 class="title">Numlee:</h2>
+
+    <br/>
+
+    {% set message = get_flashed_messages(with_categories = true) %}  
+    {% if message %}
+        {% for category, message in message %}  
+            <h3 class="{{ category }}">{{ message }}</h3>
+        {% endfor %}
+    {% endif %}
+
+    <br/>
+
+    <div class="buttons">
+        <a href="/numlee1"><button type="submit" class="next">Play again</button></a>
+    </div>
+
+    <br/>
+
+    <div class="all">
+        <div class="boxes">
+            {% autoescape false %}
+                {{ text | replace("#", "<br/>") | 
+                replace("x", "<div class=" + "inside>") | 
+                replace("y", "</div>") | 
+                replace("(correct)", "<b style=color:lime;>correct</b>") | 
+                replace("incorrect", "<b style=color:red;>incorrect</b>") |
+                replace("xy", "<b style=color:lime;>correct</b>") | 
+                reject("in", ["[", "]", ",", "'"]) | join }}
+            {% endautoescape %}
+        </div>
+    </div>
+
+    </form>
+{% endblock %}

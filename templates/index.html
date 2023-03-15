@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="../static/layout-index.css"/>
+    <title>Index</title>     
+{% endblock %}
+
+{% block main %}
+<div class="main">
+    <!-- buttos for different pages -->
+    <div class="row1">
+        <div><a href="/collatz" class="button">Collatz</a></div>
+    </div>
+
+    <div class="row2">
+        <div><a href="/board_size" class="button">Crossword</a></div>
+    </div>
+
+    <div class="row3">
+        <div><a href="/numlee1" class="button">Numlee</a></div>
+    </div>
+</div>
+
+{% endblock %}

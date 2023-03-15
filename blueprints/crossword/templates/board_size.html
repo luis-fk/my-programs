@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/blueprints/crossword/static/crossword.css" />
+    <title>Crossword</title>     
+{% endblock %}
+
+{% block main %}
+    <h2 class="title">Crossword:</h2>
+    <p class="text">
+        This program was written with the intention of finding if a given crossword puzzle
+        has a solution or not. At first the user is prompted to insert the size of the board
+        in question, then after that the user has to give the layout of the board, and lastly
+        the user has to input the number of words and the words that will be tested.
+    </p>
+    <p class="text">1- In this first step, you will provide the size of board, indicading the number
+        of rows and the number of columns.
+    </p>
+    <form action="/board_size" method="post">
+        <div class="buttons">
+            <!-- user inputs the size of the crossword board -->
+            <input autocomplete="off" autofocus name="rows" placeholder="Rows" type="text" class="textbox">
+            <input autocomplete="off" autofocus name="columns" placeholder="Columns" type="text" class="textbox">
+            <button type="submit" class="next">Next</button>
+        </div>
+
+        <!-- error messages in case the user inputs negative values or characters-->
+        {% set message = get_flashed_messages(with_categories = true) %}  
+            {% if message %}
+                {% for category, message in message %}  
+                    <h3 class="{{ category }}">{{ message }}</h3>
+               {% endfor %}
+            {% endif %}
+
+    </form>
+{% endblock %}

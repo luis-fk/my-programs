@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/blueprints/crossword/static/crossword.css" />
+    <title>Crossword</title>     
+{% endblock %}
+
+{% block main %}
+    <h2 class="title">Crossword:</h2>
+    <p class="text">3- In this step, you will provide the list of words to be tried in this board. 
+        Words can be separated by a space or you can type each word on a new line. Words cannot
+        have any special characters or accents.
+    </p>
+
+    <!-- error message in case the user tries to input characters that are not part of
+         ASCII -->
+    {% set message = get_flashed_messages(with_categories = true) %}  
+            {% if message %}
+                {% for category, message in message %}  
+                    <h3 class="{{ category }}">{{ message }}</h3>
+               {% endfor %}
+            {% endif %}
+
+    <form action="/word_list" method="post">
+
+        <div class="buttons">
+            <textarea rows="5" cols="60" name="words"></textarea>
+        </div>
+
+        <div class="button-next">
+            <button type="submit" class="next">Submit</button>  
+        </div>
+    </form>
+{% endblock %}

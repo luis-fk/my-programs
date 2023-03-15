@@ -1,0 +1,50 @@
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1%;
+}
+
+.text {
+    color: white;
+    font-size: large;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.check {
+    color: white;
+    font-size: large;
+}
+
+.title{
+    color: #476fff;
+    display: flex;
+    justify-content: center;
+}
+
+.info {
+    color:#40d027;
+    display: flex;
+    justify-content: center;
+}
+
+.error {
+    color:#f93c3c;
+    display: flex;
+    justify-content: center;
+}
+
+.steps {
+    color:#b0c94f;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.textbox {
+    width: 150px;
+}

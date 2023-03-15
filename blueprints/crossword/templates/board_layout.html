@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/blueprints/crossword/static/crossword.css" />
+    <title>Crossword</title>   
+{% endblock %}
+
+{% block main %}
+    <h2 class="title">Crossword:</h2>
+
+    <p class="text">2- In this step, you will provide the layout of the board. Leave the square
+        blank if letters can be placed in that space, otherwise select * for places
+        where letters <u>cannot</u> be placed.
+    </p>
+    <form action="/board_layout" method="post">
+        {% for rows in rows %}
+            <div class="buttons">
+                <!-- loop that will generate the board with the given size from the user
+                     where each row will have a different name so that when returned to python
+                     we are able to insert the values of each row into a list -->
+                {% for columns in columns %}
+                    <div class="buttons">
+                        <select name="value{{ rows }}" class="option" type="text">
+                            <option value="0" class="white">&#160</option>
+                            <option value="-1" class="black">*&#160</option>
+                        </select>
+                    </div>
+                {% endfor %}
+            </div>
+            <br class="break"/>
+        {% endfor %} 
+
+        <div class="button-next">
+            <button type="submit" class="next">Next</button>  
+        </div>
+             
+    </form>
+{% endblock %}

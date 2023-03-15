@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/blueprints/collatz/static/collatz.css" />
+    <title>Collatz</title>     
+{% endblock %}
+
+{% block main %}
+    <h2 class="title">The Collatz Conjecture:</h2>
+    <p class="text">
+        The Collatz conjecture is one of the most famous unsolved problems in mathematics. 
+        The conjecture asks whether repeating two simple arithmetic operations will eventually transform every 
+        positive integer into 1. It works as follows: 
+        if the term is even, we divide it by two. If the term is odd, 
+        then we multiply it by 3 and add. The conjecture is that these sequences always reach 1, 
+        no matter which positive integer is chosen to start the sequence.
+    </p>
+    <form action="/collatz" method="post">
+        <div class="buttons">
+            <input autocomplete="off" autofocus name="number" placeholder="Number" type="text" class="textbox">
+            <label class="check">Show steps</label>
+            <input type="checkbox" name="steps">
+            <button type="submit">Calculate</button>
+        </div>
+        <br />
+
+        <!-- message to be dispalyed if user inputs different values than expected -->
+        {% set message = get_flashed_messages(with_categories = true) %}  
+            {% if message %}
+                {% for category, message in message %}  
+                    <h3 class="{{ category }}">{{ message }}</h3>
+               {% endfor %}
+            {% endif %}
+
+        <!-- if user wishes to see the number of steps for a given number this code
+             will do just that -->
+        <div class="steps">
+            {% for steps in steps %}
+                {% if not loop.last %}
+                    <h4>{{ steps }} &#8594 &#160</h4>
+                {% else %}
+                    <h4>...</h4>
+                {% endif %}
+            {% endfor %}
+        </div>
+        
+    </form>
+{% endblock %}
